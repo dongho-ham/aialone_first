@@ -1,0 +1,9 @@
+.vscode/
+mnist/
+cifar/
+*.pdf
+*.png
+*.pptx
+*.zip
+*.txt
+# 와일드 카드 *
