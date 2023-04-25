@@ -19,7 +19,7 @@ class VGG_block(nn.Module):
         super().__init__()
         self.first_conv = VGG_conv(in_channels, out_channels)
         self.mid_conv = nn.ModuleList([
-            nn.Conv2d(out_channels, out_channels) for _ in range(num_convs-2)
+            VGG_conv(out_channels, out_channels) for _ in range(num_convs-2)
         ])
         kernel_size=1 if last_1conv else 3
         self.last_convs = VGG_conv(out_channels, out_channels, kernel_size=kernel_size)
