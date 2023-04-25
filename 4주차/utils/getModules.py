@@ -55,6 +55,22 @@ def get_target_module(args):
     elif args.model_type == 'incep':
         from networks.LeNet import myLeNet_incep
         model = myLeNet_incep(args.num_classes)
+    elif args.model_type == 'vgg':
+        if args.vgg_type == 'a':
+            from networks.VGG import VGG_A
+            model = VGG_A(args.num_classes).to(args.device)
+        if args.vgg_type == 'b':
+            from networks.VGG import VGG_B
+            model = VGG_B(args.num_classes).to(args.device)
+        if args.vgg_type == 'c':
+            from networks.VGG import VGG_C
+            model = VGG_C(args.num_classes).to(args.device)
+        if args.vgg_type == 'd':
+            from networks.VGG import VGG_D
+            model = VGG_D(args.num_classes).to(args.device)
+        if args.vgg_type == 'e':
+            from networks.VGG import VGG_E
+            model = VGG_E(args.num_classes).to(args.device)
     else:
         raise ValueError('no model implemented')
     

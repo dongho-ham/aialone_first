@@ -42,19 +42,35 @@ def get_dataloader(args):
 def get_target_module(args):
     if args.model_type == 'lenet':
         from networks.LeNet import myLeNet
-        model = myLeNet(args.num_classes)
+        model = myLeNet(args.num_classes).to(args.device)
     elif args.model_type == 'mlp':
         from networks.MLP import myMLP
-        model = myMLP(args.hidden_size, args.num_classes)
+        model = myMLP(args.hidden_size, args.num_classes).to(args.device)
     elif args.model_type == 'conv':
         from networks.LeNet import myLeNet_convs
-        model = myLeNet_convs(args.num_classes)
+        model = myLeNet_convs(args.num_classes).to(args.device)
     elif args.model_type == 'linear':
         from networks.LeNet import myLeNet_linear
-        model = myLeNet_linear(args.num_classes)
+        model = myLeNet_linear(args.num_classes).to(args.device)
     elif args.model_type == 'incep':
         from networks.LeNet import myLeNet_incep
-        model = myLeNet_incep(args.num_classes)
+        model = myLeNet_incep(args.num_classes).to(args.device)
+    elif args.model_type == 'vgg':
+        if args.vgg_type == 'a':
+            from networks.VGG import VGG_A
+            model = VGG_A(args.num_classes).to(args.device)
+        if args.vgg_type == 'b':
+            from networks.VGG import VGG_B
+            model = VGG_B(args.num_classes).to(args.device)
+        if args.vgg_type == 'c':
+            from networks.VGG import VGG_C
+            model = VGG_C(args.num_classes).to(args.device)
+        if args.vgg_type == 'd':
+            from networks.VGG import VGG_D
+            model = VGG_D(args.num_classes).to(args.device)
+        if args.vgg_type == 'e':
+            from networks.VGG import VGG_E
+            model = VGG_E(args.num_classes).to(args.device)
     else:
         raise ValueError('no model implemented')
     

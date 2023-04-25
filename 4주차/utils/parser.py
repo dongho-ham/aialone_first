@@ -15,8 +15,8 @@ def parser_args():
     parser.add_argument("--device", default=torch.device('cuda' if torch.cuda.is_available() else 'cpu'))
     parser.add_argument("--img_size", type=int, default=32)
 
-    parser.add_argument("--model_type", type=str, default='lenet', choices=['mlp', 'lenet', 'linear', 'conv', 'incep'])
-    
+    parser.add_argument("--model_type", type=str, default='lenet', choices=['mlp', 'lenet', 'linear', 'conv', 'incep', 'vgg'])
+    parser.add_argument("--vgg_type", type=str, default='a', choices=['a','b','c','d','e'])
     # 기본 폴더명인 save_folder args와 생성되는 파일명 저장
     parser.add_argument("--save_folder", type=str, default='results')
     return parser.parse_args()
