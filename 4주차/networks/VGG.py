@@ -37,7 +37,8 @@ class VGG_Block(nn.Module):
 
     def forward(self, x):
         x = self.first_conv(x)
-        x = self.middle_convs(x) 
+        for module in self.min_conv:
+            x = module(x)
         x = self.mp(x)
         return x 
 
@@ -46,7 +47,7 @@ class VGG_classifier(nn.Module):
     def __init__(self, num_classes): 
         super().__init__() 
         self.fc = nn.Sequential(
-            nn.Linear(32768, 4096), 
+            nn.Linear(25088, 4096), 
             nn.Linear(4096, 4096),
             # 원본 논문에는 imagenet을 사용했지만 수업에서는 cifar를 사용할 예정으로 num_classes 반환
             nn.Linear(4096, num_classes),  
