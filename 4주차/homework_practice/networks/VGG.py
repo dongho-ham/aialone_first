@@ -4,8 +4,8 @@ class VGG_conv(nn.Module):
     def __init__(self, in_channels, out_channels, kernel_size=3):
         super().__init__()
         padding = 1 if kernel_size == 3 else 0
-        self.convs = nn.Conv2d(in_channels=in_channels, out_channels=out_channels, kernel_size=kernel_size,
-                               stried=1, padding=padding)
+        self.convs = nn.Conv2d(in_channels=in_channels, out_channels=out_channels, 
+                               kernel_size=kernel_size, stride=1, padding=padding)
         self.bn = nn.BatchNorm2d(out_channels)
         self.relu = nn.ReLU()
     def forward(self, x):
@@ -27,7 +27,7 @@ class VGG_block(nn.Module):
     
     def forward(self, x):
         x = self.first_conv(x)
-        for module in self.min_conv:
+        for module in self.mid_conv:
             x = module(x)
         x = self.last_convs(x)
         return x

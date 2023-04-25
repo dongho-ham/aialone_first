@@ -33,11 +33,11 @@ class VGG_Block(nn.Module):
         # channel_size는 이전 layer와 동일해야 하므로 output_layer를 이어받음
         self.last_convs = VGG_conv(output_channel, output_channel, kernel_size=kernel_size)
         
-        self.mp = nn.MaxPool2d()
+        self.mp = nn.MaxPool2d(kernel_size=2, stride=2)
 
     def forward(self, x):
         x = self.first_conv(x)
-        for module in self.min_conv:
+        for module in self.mid_conv:
             x = module(x)
         x = self.mp(x)
         return x 

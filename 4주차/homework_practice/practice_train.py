@@ -11,14 +11,14 @@ from torch.optim import Adam
 from utils.getModules import get_dataloader, get_target_module
 from utils.parser import parser_args
 from utils.evaluation import eval
-from misc.tools import get_save_folder
+from misc.tools import get_save_folder_path
 
 
 def main():
     # f12 누르면 정의 파일로 이동
     args = parser_args()
 
-    save_folder_path = get_save_folder(args)
+    save_folder_path = get_save_folder_path(args)
     os.makedirs(save_folder_path)
 
     with open(os.path.join(save_folder_path, 'args.json'), 'w') as f:
